@@ -11,67 +11,83 @@
       padding: 0;
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at top, #1d3557 0%, #0d1b2a 72%);
-      color: #f8f5ee;
-      overflow-x: hidden;
-      position: relative;
+    html {
+      scroll-behavior: smooth;
     }
 
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #1d3557 0%, #0d1b2a 75%);
+      color: #f8f5ee;
+      overflow-x: hidden;
+    }
+
+    /* Üst Sabit Gezinme Çubuğu */
+    nav {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      display: flex;
+      gap: 8px;
+      background: rgba(13, 27, 42, 0.82);
+      backdrop-filter: blur(10px);
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    nav a {
+      color: #fde68a;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(212, 175, 55, 0.22);
+      color: #ffffff;
+    }
+
+    /* Düşen Karanfiller */
     .karanfil {
       position: fixed;
       top: -40px;
-      font-size: 24px;
       pointer-events: none;
-      animation: dusus linear infinite;
-      opacity: 0.85;
-      z-index: 1;
+      animation: dusus linear forwards;
+      z-index: 40;
     }
 
     @keyframes dusus {
-      0% {
-        transform: translateY(-40px) rotate(0deg);
-        opacity: 0;
-      }
-      15% {
-        opacity: 0.9;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+      15% { opacity: 0.9; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Bölümler (Kısa & Tam Ekran Odaklı) */
+    section {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 84px 20px 40px;
     }
 
     .kart {
-      position: relative;
-      z-index: 2;
-      max-width: 620px;
+      max-width: 640px;
       width: 100%;
-      background: rgba(255, 250, 240, 0.96);
+      background: rgba(255, 250, 240, 0.97);
       color: #132238;
       border-radius: 24px;
-      padding: 38px 30px;
+      padding: 36px 28px;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
       border: 2px solid #d4af37;
       text-align: center;
-      animation: acilis 0.8s ease-out;
-    }
-
-    @keyframes acilis {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
     }
 
     .rozet {
@@ -81,9 +97,9 @@
       background: #fef3c7;
       color: #92400e;
       font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.5px;
-      margin-bottom: 16px;
+      font-size: 12px;
+      letter-spacing: 0.6px;
+      margin-bottom: 14px;
       border: 1px solid #f59e0b;
     }
 
@@ -94,32 +110,24 @@
       margin-bottom: 10px;
     }
 
-    .ogretmen-adi {
-      font-size: 20px;
+    h2 {
+      font-size: clamp(22px, 4vw, 28px);
+      color: #0f2442;
+      margin-bottom: 14px;
+    }
+
+    .alt-baslik {
+      font-size: 18px;
       font-weight: 700;
       color: #b45309;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
 
-    .mesaj {
-      font-size: 17px;
+    .metin {
+      font-size: 16px;
       line-height: 1.75;
       color: #1e293b;
-      margin-bottom: 26px;
-      text-align: left;
-    }
-
-    .soz {
-      background: #f1f5f9;
-      border-left: 4px solid #d4af37;
-      padding: 16px 18px;
-      border-radius: 12px;
-      font-style: italic;
-      color: #334155;
-      margin-bottom: 26px;
-      text-align: left;
-      font-size: 15px;
-      line-height: 1.6;
+      margin-bottom: 22px;
     }
 
     .buton {
@@ -128,10 +136,12 @@
       border: 1px solid #d4af37;
       padding: 12px 22px;
       border-radius: 12px;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
       transition: transform 0.15s ease, opacity 0.2s ease;
+      display: inline-block;
+      text-decoration: none;
     }
 
     .buton:hover {
@@ -139,57 +149,258 @@
       opacity: 0.95;
     }
 
-    .imza {
-      margin-top: 24px;
+    .buton-ikincil {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #d4af37;
+      margin-left: 8px;
+    }
+
+    .kaydir-ipucu {
+      margin-top: 22px;
+      font-size: 13px;
+      color: #64748b;
+      animation: zipla 1.8s infinite;
+    }
+
+    @keyframes zipla {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    /* Bölüm 2: Etkileşimli Keşif Kartları */
+    .kesif-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+      text-align: left;
+    }
+
+    .kesif-kutu {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
+
+    .kesif-kutu:hover, .kesif-kutu.acik {
+      border-color: #d4af37;
+      background: #fffbeb;
+      transform: translateY(-2px);
+    }
+
+    .kesif-baslik {
+      font-weight: 700;
       font-size: 15px;
-      font-weight: 600;
+      color: #0f2442;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .kesif-icerik {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #475569;
+      display: none;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #cbd5e1;
+    }
+
+    .kesif-kutu.acik .kesif-icerik {
+      display: block;
+    }
+
+    /* Bölüm 3: Sürpriz Mektup & Söz */
+    .zarf-kutusu {
+      background: #f1f5f9;
+      border: 1.5px dashed #d4af37;
+      border-radius: 16px;
+      padding: 20px;
+      margin: 18px 0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .zarf-kutusu:hover {
+      background: #fef9c3;
+    }
+
+    .gizli-not {
+      display: none;
+      margin-top: 14px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #0f2442;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .soz-alani {
+      font-style: italic;
+      font-size: 15px;
+      color: #334155;
+      background: #f8fafc;
+      padding: 14px;
+      border-left: 4px solid #d4af37;
+      border-radius: 10px;
+      margin-top: 16px;
+      text-align: left;
+    }
+
+    .imza {
+      margin-top: 22px;
+      font-size: 15px;
+      font-weight: 700;
       color: #475569;
     }
   </style>
 </head>
 <body>
-  <main class="kart">
-    <div class="rozet">24 KASIM ÖĞRETMENLER GÜNÜ</div>
-    <h1>Öğretmenler Gününüz Kutlu Olsun</h1>
-    <div class="ogretmen-adi">Saygıdeğer Öğretmenim</div>
 
-    <p class="mesaj">
-      Bize yalnızca dersleri değil; sabrı, araştırmayı, üretmeyi ve zorluklar karşısında vazgeçmemeyi öğrettiğiniz için sonsuz teşekkürler. Emeğiniz ve yol göstericiliğiniz hayatımızda her zaman özel bir yere sahip. Sağlıklı, mutlu ve nice güzel yıllar dilerim.
-    </p>
+  <!-- Üst Hızlı Geçiş Menüsü -->
+  <nav>
+    <a href="#giris">Karşılama</a>
+    <a href="#kesfet">3 Teşekkür</a>
+    <a href="#mektup">Sürpriz Not</a>
+  </nav>
 
-    <div class="soz">
-      "Öğretmenler; yeni nesil sizin eseriniz olacaktır." — Mustafa Kemal Atatürk
+  <!-- 1. BÖLÜM: KARŞILAMA -->
+  <section id="giris">
+    <div class="kart">
+      <div class="rozet">24 KASIM ÖĞRETMENLER GÜNÜ</div>
+      <h1>Öğretmenler Gününüz Kutlu Olsun</h1>
+      <div class="alt-baslik">Saygıdeğer Öğretmenim</div>
+      <p class="metin">
+        Sizin için hazırladığım bu küçük dijital kartta hem teşekkürlerimi hem de küçük bir sürprizi bir araya getirdim. Aşağı kaydırarak kartları keşfedebilirsiniz.
+      </p>
+      <button class="buton" type="button" onclick="karanfilYagdir()">🌸 Karanfil Gönder</button>
+      <a href="#kesfet" class="buton buton-ikincil">Aşağı Kaydır ↓</a>
+      <div class="kaydir-ipucu">Keşfetmek için kaydırın</div>
     </div>
+  </section>
 
-    <button class="buton" type="button" onclick="karanfilYagdir()">
-      Karanfil Bırak
-    </button>
+  <!-- 2. BÖLÜM: TIKLANABİLİR KEŞİF KARTLARI -->
+  <section id="kesfet">
+    <div class="kart">
+      <div class="rozet">KÜÇÜK BİR İNCELEME</div>
+      <h2>Size Neden Minnettarız?</h2>
+      <p class="metin" style="margin-bottom: 10px;">
+        Kutuların üzerine dokunarak her bir notu açabilirsiniz:
+      </p>
 
-    <div class="imza">Saygı ve sevgilerimle,<br />Öğrenciniz</div>
-  </main>
+      <div class="kesif-grid">
+        <div class="kesif-kutu" onclick="kutuAc(this)">
+          <div class="kesif-baslik"><span>🌱 Sabır & Emek</span><span>+</span></div>
+          <div class="kesif-icerik">
+            Anlamadığımız her noktada bıkmadan tekrar anlattığınız ve bize inandığınız için teşekkürler.
+          </div>
+        </div>
+
+        <div class="kesif-kutu" onclick="kutuAc(this)">
+          <div class="kesif-baslik"><span>🧭 Yol Göstericilik</span><span>+</span></div>
+          <div class="kesif-icerik">
+            Sadece sınavlara değil, hayata ve geleceğe hazırlanırken ufkumuzu açtığınız için minnettarız.
+          </div>
+        </div>
+
+        <div class="kesif-kutu" onclick="kutuAc(this)">
+          <div class="kesif-baslik"><span>✨ İlham Kaynağı</span><span>+</span></div>
+          <div class="kesif-icerik">
+            Merak etmeyi, araştırmayı ve pes etmemeyi sizden öğrendik. İyi ki varsınız!
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <a href="#mektup" class="buton">Son Sürprize Geç ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. BÖLÜM: SÜRPRİZ MEKTUP & SÖZ DEĞİŞTİRİCİ -->
+  <section id="mektup">
+    <div class="kart">
+      <div class="rozet">SİZE ÖZEL</div>
+      <h2>Günün Notu</h2>
+
+      <div class="zarf-kutusu" onclick="mektubuAc()">
+        <strong id="zarf-baslik">✉️ Sürpriz Tebrik Mektubunu Açmak İçin Dokunun</strong>
+        <div class="gizli-not" id="gizli-not">
+          Değerli Öğretmenim, üzerimizdeki emeğiniz ödenmez. Sağlıklı, huzurlu ve başarılarla dolu nice güzel yıllar dilerim. Öğretmenler Gününüz kutlu olsun!
+        </div>
+      </div>
+
+      <div class="soz-alani" id="soz-metni">
+        "Öğretmenler; yeni nesil sizin eseriniz olacaktır." — Mustafa Kemal Atatürk
+      </div>
+
+      <div style="margin-top: 18px;">
+        <button class="buton" type="button" onclick="sozDegistir()">Başka Söz Göster</button>
+        <button class="buton buton-ikincil" type="button" onclick="karanfilYagdir()">🌸 Kutla</button>
+      </div>
+
+      <div class="imza">Saygı ve sevgilerimle,<br />Öğrenciniz</div>
+    </div>
+  </section>
 
   <script>
-    function tekKaranfilOlustur() {
+    const sozler = [
+      '"Öğretmenler; yeni nesil sizin eseriniz olacaktır." — Mustafa Kemal Atatürk',
+      '"Bir topluluk ulus olabilmek için mutlaka eğiticilere, öğretmenlere muhtaçtır." — Mustafa Kemal Atatürk',
+      '"İyi bir öğretmen, umudu ateşleyen, hayal gücünü harekete geçiren ve öğrenme sevgisi aşılayandır."',
+      '"Geleceğin güvencesi sağlam temellere dayalı bir eğitime, eğitim ise öğretmene dayalıdır."'
+    ];
+    let sozIndex = 0;
+
+    function kutuAc(el) {
+      el.classList.toggle("acik");
+      const isaret = el.querySelector(".kesif-baslik span:last-child");
+      isaret.textContent = el.classList.contains("acik") ? "−" : "+";
+    }
+
+    function mektubuAc() {
+      const not = document.getElementById("gizli-not");
+      const baslik = document.getElementById("zarf-baslik");
+      if (not.style.display === "block") {
+        not.style.display = "none";
+        baslik.textContent = "✉️ Sürpriz Tebrik Mektubunu Açmak İçin Dokunun";
+      } else {
+        not.style.display = "block";
+        baslik.textContent = "💌 Tebrik Mektubunuz:";
+        karanfilYagdir();
+      }
+    }
+
+    function sozDegistir() {
+      sozIndex = (sozIndex + 1) % sozler.length;
+      document.getElementById("soz-metni").textContent = sozler[sozIndex];
+    }
+
+    function tekKaranfil() {
       const el = document.createElement("div");
       el.className = "karanfil";
       el.textContent = "🌸";
       el.style.left = Math.random() * 100 + "vw";
-      const sure = 5 + Math.random() * 5;
+      const sure = 4 + Math.random() * 4;
       el.style.animationDuration = sure + "s";
       el.style.fontSize = (20 + Math.random() * 14) + "px";
       document.body.appendChild(el);
-
-      setTimeout(() => {
-        el.remove();
-      }, sure * 1000);
+      setTimeout(() => el.remove(), sure * 1000);
     }
 
     function karanfilYagdir() {
-      for (let i = 0; i < 18; i++) {
-        setTimeout(tekKaranfilOlustur, i * 110);
+      for (let i = 0; i < 16; i++) {
+        setTimeout(tekKaranfil, i * 100);
       }
     }
 
+    // İlk açılışta kısa bir karşılama yağmuru
     karanfilYagdir();
   </script>
 </body>
