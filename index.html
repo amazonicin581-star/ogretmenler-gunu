@@ -1,702 +1,196 @@
-```html
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>24 Kasım Öğretmenler Günü Kutlu Olsun</title>
-    
-    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Custom Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            950: '#09111e',
-                            900: '#0f1c30',
-                            800: '#172a46',
-                            700: '#213a5e',
-                        },
-                        gold: {
-                            300: '#f3d999',
-                            400: '#e5be67',
-                            500: '#d4a338',
-                            600: '#b58422',
-                        },
-                        cream: {
-                            50: '#fdfbf7',
-                            100: '#f8f4eb',
-                            200: '#efe6d5',
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Öğretmenler Gününüz Kutlu Olsun</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style>
-        /* Özel Animasyonlar ve Yazdırma Stilleri */
-        @keyframes floatSlow {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(3deg); }
-        }
-        
-        .animate-float {
-            animation: floatSlow 6s ease-in-out infinite;
-        }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #1d3557 0%, #0d1b2a 70%);
+      color: #f8f5ee;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        /* Özel Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #fdfbf7;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d4a338;
-            border-radius: 4px;
-        }
+    .karanfil {
+      position: fixed;
+      top: -40px;
+      font-size: 24px;
+      pointer-events: none;
+      animation: dusus linear infinite;
+      opacity: 0.85;
+      z-index: 1;
+    }
 
-        /* Yazdırma (PDF / Kart Çıktısı) Ayarları */
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            #printable-card-area, #printable-card-area * {
-                visibility: visible;
-            }
-            #printable-card-area {
-                position: fixed;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%) scale(1.1);
-                width: 90%;
-                max-width: 600px;
-                box-shadow: none !important;
-                border: 2px solid #d4a338 !important;
-            }
-        }
-    </style>
+    @keyframes dusus {
+      0% {
+        transform: translateY(-40px) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .kart {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+      width: 100%;
+      background: rgba(255, 250, 240, 0.96);
+      color: #132238;
+      border-radius: 24px;
+      padding: 38px 30px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      border: 2px solid #d4af37;
+      text-align: center;
+      animation: acilis 0.8s ease-out;
+    }
+
+    @keyframes acilis {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .rozet {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #92400e;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      border: 1px solid #f59e0b;
+    }
+
+    h1 {
+      font-size: clamp(26px, 5vw, 38px);
+      line-height: 1.25;
+      color: #0f2442;
+      margin-bottom: 10px;
+    }
+
+    .ogretmen-adi {
+      font-size: 20px;
+      font-weight: 700;
+      color: #b45309;
+      margin-bottom: 22px;
+    }
+
+    .mesaj {
+      font-size: 17px;
+      line-height: 1.75;
+      color: #1e293b;
+      margin-bottom: 26px;
+      text-align: left;
+    }
+
+    .soz {
+      background: #f1f5f9;
+      border-left: 4px solid #d4af37;
+      padding: 16px 18px;
+      border-radius: 12px;
+      font-style: italic;
+      color: #334155;
+      margin-bottom: 26px;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .buton {
+      background: linear-gradient(135deg, #1d3557, #0f2442);
+      color: #fde68a;
+      border: 1px solid #d4af37;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+
+    .buton:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .imza {
+      margin-top: 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #475569;
+    }
+  </style>
 </head>
-<body class="bg-cream-50 text-navy-900 font-sans antialiased selection:bg-gold-400 selection:text-navy-950 overflow-x-hidden">
+<body>
+  <main class="kart">
+    <div class="rozet">24 KASIM ÖĞRETMENLER GÜNÜ</div>
+    <h1>Öğretmenler Gününüz Kutlu Olsun</h1>
+    <div class="ogretmen-adi">Saygıdeğer Öğretmenim</div>
 
-    <!-- Bildirim (Toast) Kutusu -->
-    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+    <p class="mesaj">
+      Bize yalnızca dersleri değil; sabrı, araştırmayı, üretmeyi ve zorluklar karşısında vazgeçmemeyi öğrettiğiniz için sonsuz teşekkürler. Emeğiniz ve yol göstericiliğiniz hayatımızda her zaman özel bir yere sahip. Sağlıklı, mutlu ve nice güzel yıllar dilerim.
+    </p>
 
-    <!-- Üst Navigasyon -->
-    <nav class="fixed top-0 w-full z-40 bg-navy-950/90 backdrop-blur-md border-b border-gold-500/20 text-cream-50 transition-all">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2.5 group">
-                <span class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-400/50 flex items-center justify-center text-gold-400 group-hover:scale-105 transition-transform">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L14.8 8.8L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.8L12 2Z"/></svg>
-                </span>
-                <span class="font-serif font-semibold text-lg tracking-wide text-cream-50">24 Kasım</span>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-cream-200">
-                <a href="#kart-olustur" class="hover:text-gold-400 transition-colors">Tebrik Kartı Oluştur</a>
-                <a href="#ataturk-kosesi" class="hover:text-gold-400 transition-colors">Başöğretmen Atatürk</a>
-                <a href="#karanfil-duvari" class="hover:text-gold-400 transition-colors">Karanfil Duvarı</a>
-            </div>
+    <div class="soz">
+      "Öğretmenler; yeni nesil sizin eseriniz olacaktır." — Mustafa Kemal Atatürk
+    </div>
 
-            <a href="#kart-olustur" class="px-4 py-2 rounded-full bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold text-xs sm:text-sm transition-all shadow-lg shadow-gold-500/20">
-                Kart Hazırla
-            </a>
-        </div>
-    </nav>
+    <button class="buton" type="button" onclick="karanfilYagdir()">
+      Karanfil Bırak
+    </button>
 
-    <!-- 1. HERO BÖLÜMÜ -->
-    <header class="relative min-h-[92vh] flex items-center justify-center bg-gradient-to-b from-navy-950 via-navy-900 to-navy-800 text-cream-50 pt-20 pb-16 px-4 overflow-hidden">
-        <!-- Arka Plan Parıltı ve Yaprak Canvas -->
-        <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-70"></canvas>
-        
-        <!-- Dekoratif Işık Hüzmesi -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="imza">Saygı ve sevgilerimle,<br />Öğrenciniz</div>
+  </main>
 
-        <div class="relative z-10 max-w-4xl mx-auto text-center space-y-8">
-            <!-- Üst Rozet -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-400/30 text-gold-300 text-xs sm:text-sm font-medium tracking-wider uppercase">
-                <span>✦</span>
-                <span>Geleceğe Işık Tutanlara Minnetle</span>
-                <span>✦</span>
-            </div>
+  <script>
+    function tekKaranfilOlustur() {
+      const el = document.createElement("div");
+      el.className = "karanfil";
+      el.textContent = "🌸";
+      el.style.left = Math.random() * 100 + "vw";
+      const sure = 5 + Math.random() * 5;
+      el.style.animationDuration = sure + "s";
+      el.style.fontSize = (20 + Math.random() * 14) + "px";
+      document.body.appendChild(el);
 
-            <!-- Ana Başlık -->
-            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight text-cream-50">
-                24 Kasım <br class="sm:hidden" />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-300">
-                    Öğretmenler Günü
-                </span>
-                <span class="block text-2xl sm:text-4xl font-normal italic text-cream-200 mt-3">
-                    Kutlu Olsun
-                </span>
-            </h1>
+      setTimeout(() => {
+        el.remove();
+      }, sure * 1000);
+    }
 
-            <!-- Atatürk'ün Sözü -->
-            <blockquote class="max-w-2xl mx-auto pt-4 pb-2 px-6 border-y border-gold-500/20 relative">
-                <p class="font-serif italic text-xl sm:text-2xl text-gold-300 leading-relaxed">
-                    “Öğretmenler! Yeni nesil sizin eseriniz olacaktır.”
-                </p>
-                <footer class="mt-3 text-sm font-medium tracking-widest uppercase text-cream-200/80">
-                    — Başöğretmen Mustafa Kemal Atatürk
-                </footer>
-            </blockquote>
+    function karanfilYagdir() {
+      for (let i = 0; i < 18; i++) {
+        setTimeout(tekKaranfilOlustur, i * 110);
+      }
+    }
 
-            <!-- Aksiyon Butonları -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <a href="#kart-olustur" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold text-base transition-all shadow-xl shadow-gold-500/20 flex items-center justify-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                    <span>Teşekkür Kartı Oluştur</span>
-                </a>
-                <a href="#karanfil-duvari" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-navy-800/80 hover:bg-navy-700 border border-gold-400/30 text-cream-50 font-medium text-base transition-all flex items-center justify-center gap-2">
-                    <span>🌹 Karanfil Bırak</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- 2. ETKİLEŞİMLİ TEŞEKKÜR KARTI OLUŞTURUCU -->
-    <section id="kart-olustur" class="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-14">
-            <span class="text-gold-600 font-semibold text-sm tracking-wider uppercase">Kişiselleştirilmiş Hediye</span>
-            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 mt-2">Dijital Tebrik Kartı Oluşturucu</h2>
-            <p class="text-navy-700/80 mt-3 text-sm sm:text-base">
-                Öğretmeninizin adını ve ona olan duygularınızı yazın; dilediğiniz temayı seçerek özel kartınızı indirin veya mesajınızı paylaşın.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            <!-- Sol Panel: Form Kontrolleri -->
-            <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl shadow-xl shadow-navy-900/5 border border-cream-200 space-y-6">
-                <div>
-                    <label for="teacher-name" class="block text-sm font-semibold text-navy-900 mb-2">Öğretmeninizin Adı</label>
-                    <input type="text" id="teacher-name" placeholder="Örn: Ayşe Yılmaz Öğretmenim" value="Değerli Öğretmenim" 
-                        class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-cream-200 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 outline-none transition-all text-navy-900">
-                </div>
-
-                <div>
-                    <label for="preset-messages" class="block text-sm font-semibold text-navy-900 mb-2">Hazır Duygusal Mesaj Seçin</label>
-                    <select id="preset-messages" 
-                        class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-cream-200 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 outline-none transition-all text-navy-900 text-sm">
-                        <option value="0">Karanlığı aydınlatan bir meşale gibi yolumuza ışık tuttuğunuz için sonsuz teşekkürler. Öğretmenler Gününüz kutlu olsun!</option>
-                        <option value="1">Sadece dersleri değil, hayatı, sevmeyi ve iyi bir insan olmayı sizden öğrendim. Emeğiniz ödenmez, iyi ki varsınız.</option>
-                        <option value="2">Bir harf öğretenin kırk yıl hatırı vardır derler; siz bize koca bir dünyayı öğrettiniz. 24 Kasım Öğretmenler Gününüz kutlu olsun.</option>
-                        <option value="3">Sabrınız, şefkatiniz ve bitmeyen enerjinizle geleceğimizi ilmek ilmek işlediğiniz için minnettarım. Saygı ve sevgilerimle...</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="custom-message" class="block text-sm font-semibold text-navy-900 mb-2">Mesajınız (Düzenleyebilirsiniz)</label>
-                    <textarea id="custom-message" rows="4" 
-                        class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-cream-200 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 outline-none transition-all text-navy-900 text-sm leading-relaxed">Karanlığı aydınlatan bir meşale gibi yolumuza ışık tuttuğunuz için sonsuz teşekkürler. Öğretmenler Gününüz kutlu olsun!</textarea>
-                </div>
-
-                <div>
-                    <label for="sender-name" class="block text-sm font-semibold text-navy-900 mb-2">Sizin Adınız</label>
-                    <input type="text" id="sender-name" placeholder="Örn: Öğrenciniz Mert" value="Öğrenciniz" 
-                        class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-cream-200 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 outline-none transition-all text-navy-900">
-                </div>
-
-                <!-- Tema Seçimi -->
-                <div>
-                    <span class="block text-sm font-semibold text-navy-900 mb-2">Kart Teması</span>
-                    <div class="grid grid-cols-3 gap-3">
-                        <button type="button" onclick="setCardTheme('classic')" id="btn-theme-classic"
-                            class="theme-btn py-2.5 px-3 rounded-xl border-2 border-gold-500 bg-navy-900 text-cream-50 text-xs font-semibold transition-all">
-                            Klasik Lacivert
-                        </button>
-                        <button type="button" onclick="setCardTheme('modern')" id="btn-theme-modern"
-                            class="theme-btn py-2.5 px-3 rounded-xl border border-cream-200 bg-cream-100 text-navy-900 text-xs font-semibold hover:border-gold-400 transition-all">
-                            Zarif Krem
-                        </button>
-                        <button type="button" onclick="setCardTheme('floral')" id="btn-theme-floral"
-                            class="theme-btn py-2.5 px-3 rounded-xl border border-cream-200 bg-rose-50 text-rose-950 text-xs font-semibold hover:border-gold-400 transition-all">
-                            Çiçekli Bahar
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sağ Panel: Canlı Kart Önizleme ve Butonlar -->
-            <div class="lg:col-span-7 flex flex-col items-center">
-                <!-- Kart Alanı -->
-                <div id="printable-card-area" class="w-full max-w-xl rounded-3xl p-8 sm:p-12 transition-all duration-500 shadow-2xl relative overflow-hidden bg-navy-900 text-cream-50 border-2 border-gold-400/40">
-                    <!-- Köşe Süslemeleri -->
-                    <div class="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-gold-400/60 rounded-tl-lg pointer-events-none"></div>
-                    <div class="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-gold-400/60 rounded-tr-lg pointer-events-none"></div>
-                    <div class="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-gold-400/60 rounded-bl-lg pointer-events-none"></div>
-                    <div class="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-gold-400/60 rounded-br-lg pointer-events-none"></div>
-
-                    <!-- Tema İkonu / Çiçek SVG -->
-                    <div id="card-floral-decor" class="hidden absolute -right-6 -bottom-6 opacity-15 pointer-events-none">
-                        <svg class="w-48 h-48 text-rose-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9zM5.6 10.25c0 1.38 1.12 2.5 2.5 2.5.53 0 1.01-.16 1.42-.44l-.02.19c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5l-.02-.19c.4.28.89.44 1.42.44 1.38 0 2.5-1.12 2.5-2.5 0-1-.59-1.85-1.43-2.25.84-.4 1.43-1.25 1.43-2.25 0-1.38-1.12-2.5-2.5-2.5-.53 0-1.01.16-1.42.44l.02-.19C14.5 2.12 13.38 1 12 1S9.5 2.12 9.5 3.5l.02.19c-.4-.28-.89-.44-1.42-.44-1.38 0-2.5 1.12-2.5 2.5 0 1 .59 1.85 1.43 2.25-.84.4-1.43 1.25-1.43 2.25zM12 5.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5S9.5 9.38 9.5 8s1.12-2.5 2.5-2.5zM3 13c0 4.97 4.03 9 9 9 0-4.97-4.03-9-9-9z"/></svg>
-                    </div>
-
-                    <div class="relative z-10 text-center space-y-6">
-                        <div class="inline-block px-3 py-1 rounded-full border border-current/20 text-xs tracking-widest uppercase opacity-80">
-                            24 Kasım Öğretmenler Günü
-                        </div>
-
-                        <h3 id="preview-teacher" class="font-serif text-2xl sm:text-3xl font-bold text-gold-400">
-                            Sevgili Değerli Öğretmenim,
-                        </h3>
-
-                        <p id="preview-message" class="font-serif italic text-base sm:text-lg leading-relaxed opacity-95 min-h-[110px] flex items-center justify-center">
-                            “Karanlığı aydınlatan bir meşale gibi yolumuza ışık tuttuğunuz için sonsuz teşekkürler. Öğretmenler Gününüz kutlu olsun!”
-                        </p>
-
-                        <div class="pt-4 border-t border-current/15 flex flex-col items-center">
-                            <span class="text-xs uppercase tracking-wider opacity-70">Sevgi ve Saygılarımla</span>
-                            <span id="preview-sender" class="font-serif font-semibold text-lg mt-1 text-gold-400">
-                                Öğrenciniz
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Eylem Butonları -->
-                <div class="flex flex-wrap items-center justify-center gap-4 mt-8 w-full max-w-xl">
-                    <button type="button" onclick="window.print()" 
-                        class="flex-1 min-w-[200px] py-3.5 px-6 rounded-2xl bg-navy-900 hover:bg-navy-800 text-cream-50 font-semibold text-sm transition-all shadow-lg flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                        <span>Kartı İndir / Yazdır</span>
-                    </button>
-                    
-                    <button type="button" onclick="copyCardMessage()" 
-                        class="flex-1 min-w-[200px] py-3.5 px-6 rounded-2xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold text-sm transition-all shadow-lg flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                        <span>Mesajı Kopyala</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. ATATÜRK VE EĞİTİM KÖŞESİ -->
-    <section id="ataturk-kosesi" class="py-20 px-4 sm:px-6 bg-navy-950 text-cream-50 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-gold-400 font-semibold text-sm tracking-wider uppercase">Başöğretmenimizin İzinde</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-cream-50 mt-2">Atatürk ve Eğitim</h2>
-                <p class="text-cream-200/75 mt-3 text-sm sm:text-base">
-                    Millet Mektepleri Başöğretmeni Gazi Mustafa Kemal Atatürk'ün eğitime ve öğretmenlere verdiği eşsiz değeri yansıtan sözleri.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                <!-- Alıntı Kartı 1 -->
-                <div class="bg-navy-900/90 border border-gold-500/25 rounded-3xl p-8 hover:border-gold-400/60 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-gold-500/10 text-gold-400 flex items-center justify-center font-serif text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">“</div>
-                    <p class="font-serif italic text-lg text-cream-100 leading-relaxed mb-6">
-                        Milletleri kurtaranlar yalnız ve ancak öğretmenlerdir. Öğretmenden, eğiticiden mahrum bir millet henüz millet adını almak kabiliyetini kazanmamıştır.
-                    </p>
-                    <div class="text-xs text-gold-400 font-semibold tracking-wider uppercase">1925 • İzmir</div>
-                </div>
-
-                <!-- Alıntı Kartı 2 -->
-                <div class="bg-navy-900/90 border border-gold-500/25 rounded-3xl p-8 hover:border-gold-400/60 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-gold-500/10 text-gold-400 flex items-center justify-center font-serif text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">“</div>
-                    <p class="font-serif italic text-lg text-cream-100 leading-relaxed mb-6">
-                        Eğitimdir ki bir milleti ya hür, bağımsız, şanlı, yüksek bir topluluk halinde yaşatır; ya da esaret ve sefalete terk eder.
-                    </p>
-                    <div class="text-xs text-gold-400 font-semibold tracking-wider uppercase">1922 • Bursa</div>
-                </div>
-
-                <!-- Alıntı Kartı 3 -->
-                <div class="bg-navy-900/90 border border-gold-500/25 rounded-3xl p-8 hover:border-gold-400/60 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-gold-500/10 text-gold-400 flex items-center justify-center font-serif text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">“</div>
-                    <p class="font-serif italic text-lg text-cream-100 leading-relaxed mb-6">
-                        Dünyanın her tarafında öğretmenler insan topluluğunun en özverili ve saygıdeğer unsurlarıdır.
-                    </p>
-                    <div class="text-xs text-gold-400 font-semibold tracking-wider uppercase">1923 • Adana</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. ETKİLEŞİMLİ ÇİÇEK / KARANFİL BIRAKMA DUVARI -->
-    <section id="karanfil-duvari" class="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <span class="text-gold-600 font-semibold text-sm tracking-wider uppercase">Dijital Anı Panosu</span>
-            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 mt-2">Öğretmenine Bir Karanfil Bırak</h2>
-            <p class="text-navy-700/80 mt-3 text-sm sm:text-base">
-                Panoya tıklayarak veya aşağıdaki formu kullanarak kendi öğretmeniniz için kırmızı ya da beyaz karanfil eşliğinde kısa bir minnet notu bırakın.
-            </p>
-        </div>
-
-        <!-- Hızlı Karanfil Bırakma Formu -->
-        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl shadow-navy-900/5 border border-cream-200 max-w-3xl mx-auto mb-12">
-            <form id="carnation-form" class="space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label for="wall-teacher" class="block text-xs font-semibold uppercase tracking-wider text-navy-700 mb-1.5">Öğretmenin Adı</label>
-                        <input type="text" id="wall-teacher" required placeholder="Örn: Ahmet Kaya Öğretmenim"
-                            class="w-full px-4 py-2.5 rounded-xl bg-cream-50 border border-cream-200 focus:border-gold-500 outline-none text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-navy-700 mb-1.5">Karanfil Rengi Seçin</label>
-                        <div class="grid grid-cols-2 gap-2">
-                            <label class="cursor-pointer">
-                                <input type="radio" name="flower-color" value="red" checked class="peer sr-only">
-                                <div class="py-2.5 px-3 rounded-xl border border-cream-200 peer-checked:border-rose-600 peer-checked:bg-rose-50 text-center text-sm font-medium transition-all">
-                                    🌹 Kırmızı Karanfil
-                                </div>
-                            </label>
-                            <label class="cursor-pointer">
-                                <input type="radio" name="flower-color" value="white" class="peer sr-only">
-                                <div class="py-2.5 px-3 rounded-xl border border-cream-200 peer-checked:border-gold-500 peer-checked:bg-cream-100 text-center text-sm font-medium transition-all">
-                                    🤍 Beyaz Karanfil
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="wall-note" class="block text-xs font-semibold uppercase tracking-wider text-navy-700 mb-1.5">Kısa Teşekkür Notunuz</label>
-                    <input type="text" id="wall-note" required maxlength="140" placeholder="Üzerimdeki tüm emekleriniz için sonsuz teşekkürler..."
-                        class="w-full px-4 py-2.5 rounded-xl bg-cream-50 border border-cream-200 focus:border-gold-500 outline-none text-sm">
-                </div>
-
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                    <input type="text" id="wall-author" required placeholder="Adınız (Örn: Zeynep)"
-                        class="w-full sm:w-1/2 px-4 py-2.5 rounded-xl bg-cream-50 border border-cream-200 focus:border-gold-500 outline-none text-sm">
-                    
-                    <button type="submit" 
-                        class="w-full sm:w-auto px-8 py-2.5 rounded-xl bg-navy-900 hover:bg-navy-800 text-cream-50 font-semibold text-sm transition-all shadow-md flex items-center justify-center gap-2">
-                        <span>Panoya Karanfil Bırak</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Dijital Anı Duvarı Kartları -->
-        <div class="flex items-center justify-between mb-6 px-2">
-            <h3 class="font-serif text-xl font-bold text-navy-900">Bırakılan Karanfiller (<span id="flower-count">0</span>)</h3>
-            <span class="text-xs text-navy-700/70">Notlar tarayıcınızda güvenle saklanır</span>
-        </div>
-
-        <div id="carnation-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- JavaScript ile dinamik olarak doldurulacak -->
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-navy-950 text-cream-200/70 py-12 px-4 border-t border-gold-500/20 text-center">
-        <div class="max-w-4xl mx-auto space-y-4">
-            <p class="font-serif text-lg text-cream-50">
-                “İyi bir öğretmen kandile benzer; kendini tüketerek başkalarına ışık verir.”
-            </p>
-            <p class="text-xs tracking-wider uppercase text-gold-400">
-                24 Kasım Öğretmenler Günü Kutlu Olsun
-            </p>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT -->
-    <script>
-        // 1. HERO ARKA PLAN PARILTI VE YAPRAK ANİMASYONU
-        const canvas = document.getElementById('hero-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedY = Math.random() * 0.6 + 0.2;
-                this.speedX = (Math.random() - 0.5) * 0.4;
-                this.opacity = Math.random() * 0.6 + 0.2;
-                this.isLeaf = Math.random() > 0.7;
-                this.angle = Math.random() * Math.PI * 2;
-                this.spin = (Math.random() - 0.5) * 0.02;
-            }
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX + Math.sin(this.angle) * 0.2;
-                this.angle += this.spin;
-                if (this.y > canvas.height) {
-                    this.y = -10;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                ctx.globalAlpha = this.opacity;
-                if (this.isLeaf) {
-                    // Altın yaprak silüeti
-                    ctx.fillStyle = '#e5be67';
-                    ctx.beginPath();
-                    ctx.ellipse(0, 0, this.size * 2.2, this.size, 0, 0, Math.PI * 2);
-                    ctx.fill();
-                } else {
-                    // Altın parıltı
-                    ctx.fillStyle = '#f3d999';
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-                ctx.restore();
-            }
-        }
-
-        for (let i = 0; i < 55; i++) {
-            particles.push(new Particle());
-        }
-
-        function animateHero() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateHero);
-        }
-
-        // 2. TEBRİK KARTI OLUŞTURUCU MANTIĞI
-        const teacherInput = document.getElementById('teacher-name');
-        const presetSelect = document.getElementById('preset-messages');
-        const customMessageInput = document.getElementById('custom-message');
-        const senderInput = document.getElementById('sender-name');
-
-        const previewTeacher = document.getElementById('preview-teacher');
-        const previewMessage = document.getElementById('preview-message');
-        const previewSender = document.getElementById('preview-sender');
-        const cardArea = document.getElementById('printable-card-area');
-        const floralDecor = document.getElementById('card-floral-decor');
-
-        function updateCardPreview() {
-            const tName = teacherInput.value.trim() || 'Değerli Öğretmenim';
-            const msg = customMessageInput.value.trim() || 'Öğretmenler Gününüz kutlu olsun!';
-            const sName = senderInput.value.trim() || 'Öğrenciniz';
-
-            previewTeacher.textContent = `Sevgili ${tName},`;
-            previewMessage.textContent = `“${msg}”`;
-            previewSender.textContent = sName;
-        }
-
-        teacherInput.addEventListener('input', updateCardPreview);
-        senderInput.addEventListener('input', updateCardPreview);
-        customMessageInput.addEventListener('input', updateCardPreview);
-
-        presetSelect.addEventListener('change', (e) => {
-            const selectedText = e.target.options[e.target.selectedIndex].text;
-            customMessageInput.value = selectedText;
-            updateCardPreview();
-        });
-
-        function setCardTheme(theme) {
-            // Buton stillerini sıfırla
-            document.querySelectorAll('.theme-btn').forEach(btn => {
-                btn.classList.remove('border-2', 'border-gold-500', 'ring-2', 'ring-gold-500/30');
-                btn.classList.add('border', 'border-cream-200');
-            });
-
-            const activeBtn = document.getElementById(`btn-theme-${theme}`);
-            activeBtn.classList.remove('border', 'border-cream-200');
-            activeBtn.classList.add('border-2', 'border-gold-500', 'ring-2', 'ring-gold-500/30');
-
-            // Kart temasını uygula
-            floralDecor.classList.add('hidden');
-            if (theme === 'classic') {
-                cardArea.className = 'w-full max-w-xl rounded-3xl p-8 sm:p-12 transition-all duration-500 shadow-2xl relative overflow-hidden bg-navy-900 text-cream-50 border-2 border-gold-400/50';
-                previewTeacher.className = 'font-serif text-2xl sm:text-3xl font-bold text-gold-400';
-                previewSender.className = 'font-serif font-semibold text-lg mt-1 text-gold-400';
-            } else if (theme === 'modern') {
-                cardArea.className = 'w-full max-w-xl rounded-3xl p-8 sm:p-12 transition-all duration-500 shadow-2xl relative overflow-hidden bg-cream-100 text-navy-900 border-2 border-gold-500/60';
-                previewTeacher.className = 'font-serif text-2xl sm:text-3xl font-bold text-navy-900';
-                previewSender.className = 'font-serif font-semibold text-lg mt-1 text-gold-600';
-            } else if (theme === 'floral') {
-                cardArea.className = 'w-full max-w-xl rounded-3xl p-8 sm:p-12 transition-all duration-500 shadow-2xl relative overflow-hidden bg-gradient-to-br from-rose-50 via-cream-50 to-amber-50 text-navy-900 border-2 border-rose-300';
-                previewTeacher.className = 'font-serif text-2xl sm:text-3xl font-bold text-rose-900';
-                previewSender.className = 'font-serif font-semibold text-lg mt-1 text-rose-800';
-                floralDecor.classList.remove('hidden');
-            }
-        }
-
-        function copyCardMessage() {
-            const fullText = `${previewTeacher.textContent}\n\n${previewMessage.textContent}\n\nSevgi ve Saygılarımla,\n${previewSender.textContent}`;
-            const tempInput = document.createElement('textarea');
-            tempInput.value = fullText;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            showToast('Tebrik mesajı panoya kopyalandı!');
-        }
-
-        // 3. BİLDİRİM (TOAST) SİSTEMİ
-        function showToast(message) {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'bg-navy-900 text-cream-50 border border-gold-400/50 px-5 py-3 rounded-2xl shadow-xl text-sm font-medium flex items-center gap-2 transform transition-all duration-300 translate-y-2 opacity-0';
-            toast.innerHTML = `<span class="text-gold-400">✦</span><span>${message}</span>`;
-            container.appendChild(toast);
-
-            requestAnimationFrame(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            });
-
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-2');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        // 4. KARANFİL BIRAKMA DUVARI (LOCALSTORAGE)
-        const STORAGE_KEY = 'ogretmenler_gunu_karanfiller_v1';
-        const defaultFlowers = [
-            {
-                id: 1,
-                teacher: 'Mustafa Kemal Atatürk',
-                color: 'red',
-                note: 'Bize bıraktığınız aydınlık Cumhuriyet ve çağdaş eğitim mirası için sonsuz minnetle...',
-                author: 'Tüm Öğrencileriniz',
-                date: '24 Kasım'
-            },
-            {
-                id: 2,
-                teacher: 'İlkokul Öğretmenim Selma Hanım',
-                color: 'white',
-                note: 'Kalem tutmayı öğrettiğiniz ilk günden beri ışığınız hep yolumu aydınlattı. İyi ki varsınız!',
-                author: 'Emre K.',
-                date: '24 Kasım'
-            },
-            {
-                id: 3,
-                teacher: 'Matematik Öğretmenim Hakan Hoca',
-                color: 'red',
-                note: 'Bize sadece sayıları değil, pes etmemeyi ve analitik düşünmeyi öğrettiğiniz için teşekkürler.',
-                author: 'Selin Y.',
-                date: '24 Kasım'
-            }
-        ];
-
-        function getFlowers() {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                return saved ? JSON.parse(saved) : defaultFlowers;
-            } catch (e) {
-                return defaultFlowers;
-            }
-        }
-
-        function saveFlowers(flowers) {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(flowers));
-            } catch (e) {
-                console.error('Kayıt hatası:', e);
-            }
-        }
-
-        function escapeHTML(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
-        function renderFlowers() {
-            const flowers = getFlowers();
-            const grid = document.getElementById('carnation-grid');
-            const countEl = document.getElementById('flower-count');
-            
-            countEl.textContent = flowers.length;
-            grid.innerHTML = '';
-
-            flowers.forEach(item => {
-                const isRed = item.color === 'red';
-                const card = document.createElement('div');
-                card.className = `rounded-3xl p-6 transition-all hover:-translate-y-1 shadow-md border ${
-                    isRed 
-                    ? 'bg-white border-rose-200/80 hover:border-rose-400' 
-                    : 'bg-cream-100/70 border-gold-400/30 hover:border-gold-500'
-                }`;
-
-                const flowerIcon = isRed ? '🌹' : '🤍';
-                const badgeText = isRed ? 'Kırmızı Karanfil' : 'Beyaz Karanfil';
-                const badgeClass = isRed ? 'bg-rose-50 text-rose-700 border-rose-200' : 'bg-white text-navy-800 border-cream-200';
-
-                card.innerHTML = `
-                    <div class="flex items-start justify-between gap-3 mb-4">
-                        <div class="flex items-center gap-2.5">
-                            <span class="text-2xl">${flowerIcon}</span>
-                            <div>
-                                <h4 class="font-serif font-bold text-navy-900 text-base leading-snug">${escapeHTML(item.teacher)}</h4>
-                                <span class="text-xs text-navy-700/60">${escapeHTML(item.date)}</span>
-                            </div>
-                        </div>
-                        <span class="px-2.5 py-1 rounded-full text-[11px] font-medium border ${badgeClass}">
-                            ${badgeText}
-                        </span>
-                    </div>
-                    <p class="text-navy-800 text-sm leading-relaxed italic mb-4">
-                        “${escapeHTML(item.note)}”
-                    </p>
-                    <div class="pt-3 border-t border-navy-900/10 flex items-center justify-between text-xs font-medium text-navy-700">
-                        <span>Gönderen: <strong class="text-navy-900">${escapeHTML(item.author)}</strong></span>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        document.getElementById('carnation-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const teacher = document.getElementById('wall-teacher').value.trim();
-            const note = document.getElementById('wall-note').value.trim();
-            const author = document.getElementById('wall-author').value.trim();
-            const color = document.querySelector('input[name="flower-color"]:checked').value;
-
-            if (!teacher || !note || !author) return;
-
-            const flowers = getFlowers();
-            flowers.unshift({
-                id: Date.now(),
-                teacher,
-                color,
-                note,
-                author,
-                date: 'Az önce'
-            });
-
-            saveFlowers(flowers);
-            renderFlowers();
-            e.target.reset();
-            showToast('Karanfiliniz ve teşekkür notunuz panoya eklendi!');
-        });
-
-        // Sayfa Yüklendiğinde Başlat
-        window.onload = function() {
-            animateHero();
-            renderFlowers();
-        };
-    </script>
+    karanfilYagdir();
+  </script>
 </body>
 </html>
-```
