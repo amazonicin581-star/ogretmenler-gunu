@@ -30,7 +30,7 @@
       top: 14px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 50;
+      z-index: 500;
       display: flex;
       gap: 8px;
       background: rgba(13, 27, 42, 0.85);
@@ -59,25 +59,33 @@
     }
 
     /* Düşen Karanfiller */
-    .karanfil-katmani {
+    .karanfil-cicek {
       position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 40;
-    }
-
-    .karanfil {
-      position: absolute;
       top: -40px;
       pointer-events: none;
-      animation: dusus linear forwards;
+      z-index: 9999;
+      line-height: 1;
+      user-select: none;
+      animation-name: karanfilDusus;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
     }
 
-    @keyframes dusus {
-      0% { transform: translateY(-40px) rotate(0deg); opacity: 0; }
-      15% { opacity: 0.9; }
-      100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+    @keyframes karanfilDusus {
+      0% {
+        transform: translate3d(0, -20px, 0) rotate(0deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: 1;
+      }
+      88% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(24px, 105vh, 0) rotate(360deg);
+        opacity: 0;
+      }
     }
 
     /* Bölümler */
@@ -99,6 +107,8 @@
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
       border: 2px solid #d4af37;
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
     .rozet {
@@ -274,8 +284,6 @@
 </head>
 <body>
 
-  <div class="karanfil-katmani" id="karanfil-katmani"></div>
-
   <nav>
     <a href="#giris">Karşılama</a>
     <a href="#kesfet">3 Teşekkür</a>
@@ -321,32 +329,3 @@
 
         <div class="kesif-kutu" onclick="kutuAc(this)">
           <div class="kesif-baslik"><span>✨ İlham Kaynağı</span><span>+</span></div>
-          <div class="kesif-icerik">
-            Merak etmeyi, araştırmayı ve pes etmemeyi sizden öğrendik. İyi ki varsınız!
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top: 24px;">
-        <a href="#mektup" class="buton">Son Sürprize Geç ↓</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="mektup">
-    <div class="kart">
-      <div class="rozet">SİZE ÖZEL</div>
-      <h2>Günün Notu</h2>
-
-      <div class="zarf-kutusu" onclick="mektubuAc()">
-        <strong id="zarf-baslik">✉️ Sürpriz Tebrik Mektubunu Açmak İçin Dokunun</strong>
-        <div class="gizli-not" id="gizli-not">
-          Değerli Öğretmenim, üzerimizdeki emeğiniz ödenmez. Sağlıklı, huzurlu ve başarılarla dolu nice güzel yıllar dilerim. Öğretmenler Gününüz kutlu olsun!
-        </div>
-      </div>
-
-      <div class="soz-alani" id="soz-metni">
-        "Öğretmenler; yeni nesil sizin eseriniz olacaktır." — Mustafa Kemal Atatürk
-      </div>
-
-      <div style="margin-top: 18px;">
