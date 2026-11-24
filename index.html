@@ -329,3 +329,104 @@
 
         <div class="kesif-kutu" onclick="kutuAc(this)">
           <div class="kesif-baslik"><span>✨ İlham Kaynağı</span><span>+</span></div>
+          <div class="kesif-icerik">
+            Merak etmeyi, araştırmayı ve pes etmemeyi sizden öğrendik. İyi ki varsınız!
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <a href="#mektup" class="buton">Son Sürprize Geç ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="mektup">
+    <div class="kart">
+      <div class="rozet">SİZE ÖZEL</div>
+      <h2>Günün Notu</h2>
+
+      <div class="zarf-kutusu" onclick="mektubuAc()">
+        <strong id="zarf-baslik">✉️ Sürpriz Tebrik Mektubunu Açmak İçin Dokunun</strong>
+        <div class="gizli-not" id="gizli-not">
+          Değerli Öğretmenim, üzerimizdeki emeğiniz ödenmez. Sağlıklı, huzurlu ve başarılarla dolu nice güzel yıllar dilerim. Öğretmenler Gününüz kutlu olsun!
+        </div>
+      </div>
+
+      <div class="soz-alani" id="soz-metni">
+        "Öğretmenler; yeni nesil sizin eseriniz olacaktır." — Mustafa Kemal Atatürk
+      </div>
+
+      <div style="margin-top: 18px;">
+        <button class="buton" type="button" onclick="sozDegistir()">Başka Söz Göster</button>
+        <button class="buton buton-ikincil" type="button" onclick="karanfilYagdir()">🌸 Kutla</button>
+      </div>
+
+      <div class="imza">Saygı ve sevgilerimle,<br />Öğrenciniz</div>
+    </div>
+  </section>
+
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.addEventListener("load", () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      karanfilYagdir(12);
+    });
+
+    const sozler = [
+      '"Öğretmenler; yeni nesil sizin eseriniz olacaktır." — Mustafa Kemal Atatürk',
+      '"Bir topluluk ulus olabilmek için mutlaka eğiticilere, öğretmenlere muhtaçtır." — Mustafa Kemal Atatürk',
+      '"İyi bir öğretmen, umudu ateşleyen, hayal gücünü harekete geçiren ve öğrenme sevgisi aşılayandır."',
+      '"Geleceğin güvencesi sağlam temellere dayalı bir eğitime, eğitim ise öğretmene dayalıdır."'
+    ];
+    const cicekler = ["🌸", "🌺", "🌹", "🌼"];
+    let sozIndex = 0;
+
+    function kutuAc(el) {
+      el.classList.toggle("acik");
+      const isaret = el.querySelector(".kesif-baslik span:last-child");
+      isaret.textContent = el.classList.contains("acik") ? "−" : "+";
+    }
+
+    function mektubuAc() {
+      const not = document.getElementById("gizli-not");
+      const baslik = document.getElementById("zarf-baslik");
+      if (not.style.display === "block") {
+        not.style.display = "none";
+        baslik.textContent = "✉️ Sürpriz Tebrik Mektubunu Açmak İçin Dokunun";
+      } else {
+        not.style.display = "block";
+        baslik.textContent = "💌 Tebrik Mektubunuz:";
+        karanfilYagdir(20);
+      }
+    }
+
+    function sozDegistir() {
+      sozIndex = (sozIndex + 1) % sozler.length;
+      document.getElementById("soz-metni").textContent = sozler[sozIndex];
+    }
+
+    function tekKaranfil() {
+      const el = document.createElement("span");
+      el.className = "karanfil-cicek";
+      el.textContent = cicekler[Math.floor(Math.random() * cicekler.length)];
+      el.style.left = (4 + Math.random() * 90) + "vw";
+      const sure = 3.2 + Math.random() * 2.8;
+      el.style.animationDuration = sure + "s";
+      el.style.fontSize = (22 + Math.random() * 14) + "px";
+      document.body.appendChild(el);
+      setTimeout(() => {
+        if (el.parentNode) el.remove();
+      }, sure * 1000 + 200);
+    }
+
+    function karanfilYagdir(adet = 22) {
+      for (let i = 0; i < adet; i++) {
+        setTimeout(tekKaranfil, i * 85);
+      }
+    }
+  </script>
+</body>
+</html>
